@@ -24,23 +24,23 @@ class Board extends React.Component {
   }
 
   render() {
+    const items = [0, 1, 2];
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {items.map((row) => {
+          return (
+            <div key={`board-row-${row}`} className="board-row">
+              {items.map((col) => {
+                let key = row * items.length + col;
+                return (
+                  <span key={`square-${key}`}>
+                    {this.renderSquare(key)}
+                  </span>
+                )
+              })}
+            </div>
+          )
+        })}
       </div>
     );
   }
