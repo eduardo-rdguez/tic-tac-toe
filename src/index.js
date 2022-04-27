@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client'
 import './index.css';
 
 function Square(props) {
@@ -16,10 +16,12 @@ function Square(props) {
 class Board extends React.Component {
   renderSquare(i) {
     return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
+      <span key={`square-${i}`}>
+        <Square
+          value={this.props.squares[i]}
+          onClick={() => this.props.onClick(i)}
+        />
+      </span>
     );
   }
 
@@ -32,11 +34,7 @@ class Board extends React.Component {
             <div key={`board-row-${row}`} className="board-row">
               {items.map((col) => {
                 let key = row * items.length + col;
-                return (
-                  <span key={`square-${key}`}>
-                    {this.renderSquare(key)}
-                  </span>
-                )
+                return this.renderSquare(key);
               })}
             </div>
           )
